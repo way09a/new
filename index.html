@@ -78,7 +78,10 @@
       const invoice = document.getElementById('invoice').value;
       const otp = document.getElementById('otp').value;
       const amount = document.getElementById('amount').value;
-      const date = new Date().toISOString(); // التاريخ الحالي
+
+      // ✅ تنسيق التاريخ يدويًا
+      const now = new Date();
+      const date = `${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
 
       loader.style.display = 'block';
       responseEl.textContent = '';
