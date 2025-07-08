@@ -9,11 +9,23 @@
       max-width: 400px;
       margin: auto;
       padding-top: 50px;
+      direction: rtl;
     }
     input, button {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
+      font-size: 16px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #response {
+      color: green;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -33,7 +45,7 @@
       const invoice = document.getElementById('invoice').value;
       const amount = document.getElementById('amount').value;
 
-      fetch('رابط_السكريبت_من_Google_Script', {
+      fetch('https://script.google.com/macros/s/AKfycbwhKESJ1fJ8-dSHyR_wUsH4QVzl7kY1nVBLiMiadSxcrzlnRqvYvzOOfhybzIUI0tWF/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -41,10 +53,10 @@
         },
         body: `invoice=${invoice}&amount=${amount}`
       }).then(() => {
-        document.getElementById('response').innerText = '✅ تم الإرسال بنجاح';
+        document.getElementById('response').innerText = '✅ تم إرسال الفاتورة بنجاح';
         document.getElementById('invoiceForm').reset();
       }).catch(() => {
-        document.getElementById('response').innerText = '❌ فشل الإرسال';
+        document.getElementById('response').innerText = '❌ حدث خطأ أثناء الإرسال';
       });
     });
   </script>
