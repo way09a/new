@@ -59,7 +59,7 @@
   <h2>📋 إرسال بيانات الفاتورة</h2>
   <form id="invoiceForm">
     <input type="text" id="invoice" placeholder="رقم الفاتورة" required>
-    <input type="text" id="invoice" placeholder="OTP" required>
+    <input type="number" id="amount" placeholder="OTP" required>
     <input type="number" id="amount" placeholder="المبلغ" required>
     <button type="submit">إرسال</button>
   </form>
@@ -75,22 +75,22 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      const invoice = document.getElementById('invoice').value;
-      const amount = document.getElementById('amount').value;
-      const amount = document.getElementById('otp').value;
-      const date = new Date().toISOString(); // ISO format e.g., 2025-07-08T10:00:00.000Z
+      const invoice = document.getElementById('Invoice').value;
+      const invoice = document.getElementById('Otp').value;
+      const amount = document.getElementById('Amount').value;
+      const date = new Date().toISOString(); // التاريخ الحالي بصيغة ISO
 
       loader.style.display = 'block';
       responseEl.textContent = '';
       form.querySelector('button').disabled = true;
 
-      fetch('https://script.google.com/macros/s/AKfycbwhKESJ1fJ8-dSHyR_wUsH4QVzl7kY1nVBLiMiadSxcrzlnRqvYvzOOfhybzIUI0tWF/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbwMQ6rBXbYwIp7BocUGcdXJQli2ydinS7z1NLfHScWc5zPQc5_-8cBGlUz8oPpeb1FD/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: `invoice=${invoice}&amount=${amount}&date=${encodeURIComponent(date)}`
+        body: `Invoice=${Invoice}&Otp=${Otp}&Amount=${Amount}&date=${encodeURIComponent(date)}`
       }).then(() => {
         loader.style.display = 'none';
         responseEl.textContent = '✅ تم إرسال الفاتورة بنجاح';
