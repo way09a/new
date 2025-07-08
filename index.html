@@ -86,18 +86,20 @@
 
       fetch('https://script.google.com/macros/s/AKfycbzXUmZIFZDzXjHy43K8NGfqGmHhbYzbxJ57Ryg6WfGMSVcO8OEVJDTpodabmC7G9RBn/exec', {
         method: 'POST',
-        mode: 'cors'
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: `invoice=${invoice}&otp=${otp}&amount=${amount}&date=${encodeURIComponent(date)}`
-      }).then(() => {
+      })
+      .then(() => {
         loader.style.display = 'none';
         responseEl.textContent = '✅ تم إرسال الفاتورة بنجاح';
         responseEl.style.color = 'green';
         form.reset();
         form.querySelector('button').disabled = false;
-      }).catch(() => {
+      })
+      .catch(() => {
         loader.style.display = 'none';
         responseEl.textContent = '❌ حدث خطأ أثناء الإرسال';
         responseEl.style.color = 'red';
