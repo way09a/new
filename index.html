@@ -94,10 +94,10 @@
   <div class="container">
     <h2>📋 إرسال بيانات </h2>
     <form id="invoiceForm">
-      <input type="text" id="invoice" placeholder="رقم الفاتورة" required>
+      <input type="text" id="invoice" placeholder="رقم الفاتورة (Invoice Num)" required>
       <input type="number" id="otp" placeholder="رمز التحقق OTP" required>
-      <input type="number" id="amount" placeholder="المبلغ" required>
-      <button type="submit">إرسال</button>
+      <input type="number" id="amount" placeholder="المبلغ (Amount)" required>
+      <button type="submit">Send</button>
     </form>
 
     <div class="loader" id="loader"></div>
@@ -133,14 +133,14 @@
       })
       .then(() => {
         loader.style.display = 'none';
-        responseEl.textContent = '✅ تم إرسال المعلومات بنجاح';
+        responseEl.textContent = '✅ Information Sent Successfully';
         responseEl.style.color = 'green';
         form.reset();
         form.querySelector('button').disabled = false;
       })
       .catch(() => {
         loader.style.display = 'none';
-        responseEl.textContent = '❌ حدث خطأ أثناء الإرسال';
+        responseEl.textContent = '❌ Error';
         responseEl.style.color = 'red';
         form.querySelector('button').disabled = false;
       });
