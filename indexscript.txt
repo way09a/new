@@ -1,1 +1,15 @@
 
+function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  var invoice = e.parameter.invoice;
+  var otp = e.parameter.otp;
+  var amount = e.parameter.amount;
+  var date = e.parameter.date;
+
+  
+  sheet.appendRow([invoice, otp, amount, date]);
+  
+  return ContentService.createTextOutput("تمت الإضافة بنجاح")
+    .setMimeType(ContentService.MimeType.TEXT);
+}
